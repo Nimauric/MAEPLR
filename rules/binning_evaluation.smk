@@ -72,6 +72,6 @@ rule bin_metaquast :
         mem_mb=10*1000, # 1 giga = 1000 mega
         runtime=24*60,
     output : directory("outputs/{run_name}/{assember_name}/bins_metaquast_results/summary/TSV/"),
-    shell : "{input.script} {input.binsassembly} outputs/{wildcards.run_name}/{wildcards.assember_name}/bins_metaquast_results {params.reference_genomes}"
+    shell : "{input.script} {input.bins} outputs/{wildcards.run_name}/{wildcards.assember_name}/bins_metaquast_results {params.reference_genomes}"
 
 # Need another rule to write a report

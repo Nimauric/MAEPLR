@@ -13,6 +13,5 @@ eval "$(conda shell.bash hook)" #Makes it possible to use conda activate
 conda activate env/snakemake
 
 source dependencies/metaMDBG_installer.sh
-source dependencies/operaMS_installer.sh
 
 conda activate env/snakemake

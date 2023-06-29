@@ -8,7 +8,8 @@ pacbio-hifi:
 
 pacbio-clr:
  - name: Bmock-PacBio
-   path: ../metagenomic_benchmark/data/input_reads/Bmock-PacBio.fastq
+   path: ../Hi-Fi/data/input_reads/SRR8073714.fastq
+#../metagenomic_benchmark/data/input_reads/Bmock-PacBio.fastq
 
 ont:
  - name: test-ont
@@ -28,7 +29,7 @@ pacbio-hifi-assemblers:
 # - hifiasm-meta
 
 pacbio-clr-assemblers:
-# - metaflye
+ - metaflye
 # - miniasm
 
 ont-assemblers:
@@ -36,14 +37,14 @@ ont-assemblers:
 # - miniasm
 
 pacbio-clr-illumina-hybrid-assemblers:
- - operaMS
+# - operaMS
 
 ont-illumina-hybrid-assemblers:
 # - operaMS
 
 ##### Evaluation #####
-reference-genomes: ../metagenomic_benchmark/data/input_reference_genomes/zymo/
-#../Hi-Fi/data/input_reference_genomes/
+reference-genomes: ../Hi-Fi/data/input_reference_genomes/
+#../metagenomic_benchmark/data/input_reference_genomes/zymo/
 
 abundance-information: ../abundance_info.csv
 
