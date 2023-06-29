@@ -58,3 +58,20 @@ rule bin_quality_based_stats :
     output : "outputs/{run_name}/{assember_name}/bin_quality_based_report.txt"
     shell : 
         "python3 {input.script} {input.checkm_results} {input.bins} > {output}"
+
+
+##### Reference based #####
+rule bin_metaquast :
+    params : 
+        reference_genomes = get_files_in_folder(config["reference-genomes"])
+    input : 
+        script = "binning_and_evaluation/bins_metaquast_wraper.sh", 
+        bins = "outputs/{run_name}/{assember_name}/bins",
+    conda : "../env/quast.yaml"
+    resources :
+        mem_mb=10*1000, # 1 giga = 1000 mega
+        runtime=24*60,
+    output : directory("outputs/{run_name}/{assember_name}/bins_metaquast_results/summary/TSV/"),
+    shell : "{input.script} {input.binsassembly} outputs/{wildcards.run_name}/{wildcards.assember_name}/bins_metaquast_results {params.reference_genomes}"
+
+# Need another rule to write a report
