@@ -1,0 +1,68 @@
+
+### Input ###
+assembly: "/path/to/assembly.fasta" # Required
+
+reads: # Required (at least 1)
+ - name: name
+   type: PacBio-HiFi # Illumina, PacBio-HiFi
+   path: /path/to/reads1.fastq
+   
+ - name: name
+   type: Illumina # Illumina, PacBio-HiFi
+   path: 
+    - /path/to/R1.fastq
+    - /path/to/R2.fastq 
+
+
+bins: "/path/to/bins.fasta" # Optional. If not included: Only evaluate contigs
+binning_name: "binning_name" # Optional.
+
+reference_genomes: # Optional
+ - name: name
+   path: path/to/reference_genome.fasta
+
+
+### Output ###
+output_directory: "path/to/output_directory" 
+
+
+# True output ?: 
+# output_directory_prefix/
+#   - binning_name/ (possibility of having multiple binnings folders with different names)
+#   - reads_name/ (possibility of having multiple reads folders with different names)
+#   - ... (other folders, for binning-independant and reads-independant analysis)
+#   - logs/ (include a folder for each times the analysis is run within the folder (auto number, or a parameter to give a name to the analysis ?), each containing the config file, the snakemake slurm log and all of its rule logs)
+
+
+### Controls ###
+# mapped/unmapped reads analysis
+fastQC: false #read quality
+reads_kraken2: false #taxonomic assignation
+kat: false #k-mer composition
+ 
+# contigs analysis
+reads_on_contigs_mapping: false 
+contigs_kraken2: false
+metaquast: false # Require reference genomes
+
+# bins analysis
+bins_analysis: false # If true, uses checkm, and then fastQC, kraken, kat and reads_on_contigs_mapping will be performed on bins (if set to true)
+
+### Ressources parameters ###
+# for each analysis that uses significant ressources (How much is significant ?): 
+rule_1: 
+  threads: 1
+  memory: 1G
+  time: 1:00:00
+
+### Tools parameters ###
+# How much control should I give to the user for each analysis ?
+
+# Kraken2
+kraken2bin: /scratch/nimauric/kraken2/bins/
+kraken2db: /groups/genscale/nimauric/databases/standard_kraken_database/
+kronabin: /scratch/nimauric/KronaTools-2.7/bin/
+
+
+
+
