@@ -19,5 +19,4 @@ rule reads_on_contigs_mapping :
         reads_path = lambda wildcards: get_reads_attribute("path", wildcards),
         contigs = config["assembly"]
     output: "{prefix}/{reads_name}/reads_on_contigs.bam"
-    log: "{{prefix}}/logs/{analysis_name}/rule_read_on_contig_mappings/{{reads_name}}.log".format(analysis_name=config["analysis_name"])
     shell: "./{input.script} {output} {input.contigs} {params.reads_type} {input.reads_path} "
