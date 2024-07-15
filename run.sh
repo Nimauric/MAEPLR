@@ -26,3 +26,5 @@ snakemake all --cores all  --slurm --jobs 10 \
 
 mv .snakemake/log/* $output_directory/logs/$analysis_name/
 mv .snakemake/slurm_logs/* $output_directory/logs/$analysis_name/
+
+#snakemake -np all --configfile config/config.yaml 
